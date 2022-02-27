@@ -38,3 +38,39 @@ function speak()
 
     }
 
+    function check(){
+        img=document.getElementById("captured_image");
+        classifier.classify(img,gotResult);
+        }
+    function gotResult(error,results){
+        if(error){
+            console.error(error);
+            
+        }
+        else{
+            console.log(results);
+            document.getElementById("result_emotion_name").innerHTML=results[0].label;
+            prediction_1=results[0].label;
+            console.log(prediction_1);
+            
+            if(results[0].label=="Good")
+            {
+                document.getElementById("update_emoji").innerHTML="	&#128077;";
+            }
+            if(results[0].label=="Peace")
+            {
+                document.getElementById("update_emoji").innerHTML="&#9996;";
+            }
+            if(results[0].label=="Bad")
+            {
+                document.getElementById("update_emoji").innerHTML="&#128078";
+            }
+            if(results[0].label=="Amazing")
+            {
+                document.getElementById("update_emoji2").innerHTML="&#128076;";
+            }
+           
+            speak();
+        }
+        
+    }
